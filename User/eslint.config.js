@@ -22,7 +22,34 @@ export default [
       },
     },
     rules: {
-      // You can add any custom rules here
+      // --- ADD YOUR CUSTOM RULES HERE ---
+
+      // Enforce using const instead of let for variables that are not reassigned.
+      'prefer-const': 'error',
+
+      // Require the use of `===` and `!==`
+      eqeqeq: 'error',
+
+      // Customize the 'no-unused-vars' rule.
+      'no-unused-vars': [
+        'warn',
+        {
+          args: 'after-used',
+          ignoreRestSiblings: true,
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+      // --- NAMING CONVENTION RULE ---
+      camelcase: [
+        'error',
+        {
+          properties: 'always',
+          ignoreDestructuring: true,
+          allow: ['^UNSAFE_'],
+        },
+      ],
     },
   },
 ];
