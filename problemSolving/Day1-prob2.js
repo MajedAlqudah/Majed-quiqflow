@@ -11,10 +11,10 @@ function pingPongTracker(){
         },
         myLevel() {
             if(time < 30){
-                return " I need improvment"
+                return " I need to improve my game"
             }
             else if (time > 100){
-                return "wow, I wwasted alot of time"
+                return "wow, I wasted alot of time"
             }
             return "you need to improve your game"
         }
