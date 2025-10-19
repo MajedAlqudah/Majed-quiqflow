@@ -27,7 +27,9 @@ function getMinOfArray(numArray) {
 }
 
 var maximumProfit  = function(array) {
-  
+    if (array.length < 2 || !array) {
+        return 0;
+    }
     let minPrice = array[0];
     let maxProfit = 0;
 
