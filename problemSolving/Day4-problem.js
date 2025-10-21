@@ -13,33 +13,56 @@ Example:
 coinCombination(200p) //-> 73682
 */
 
-function countWays(total, coins, index, memo) {
+// function countWays(total, coins, index, memo) {
+//     if (total === 0) {
+//         return 1;
+//     }
+
+//     const key = `${total}-${index}`;
+
+//     if(memo.has(key)) {
+//         return memo.get(key);
+//     }
+
+//     if(total < 0 || index >= coins.length) {
+//         return 0;
+//     }
+
+//     const waysIncludingCoin = countWays(total - coins[index], coins, index, memo); 
+//     const waysExcludingCoin = countWays(total, coins, index + 1, memo);
+
+//     memo.set(key, waysIncludingCoin + waysExcludingCoin);
+//     return memo.get(key);
+// }
+
+// function coinCombination(totalPence) {
+//     const coins = [1, 2, 5, 10, 20, 50, 100, 200];
+//     const memoization = new Map();
+//     // im using memoization to optimize the recursive solution , using it as cache to store already computed results(thanks to walead for this idea from yesterday's standup meeting)
+//     return countWays(totalPence, coins, 0, memoization);
+// }
+
+function coinCombination(total, coins = [1, 2, 5, 10, 20, 50, 100, 200], index = 0, memo = {}) {
     if (total === 0) {
         return 1;
+    }
+    
+    if (total < 0 || index >= coins.length) {
+        return 0;
     }
 
     const key = `${total}-${index}`;
 
-    if(memo.has(key)) {
-        return memo.get(key);
+    if (key in memo) {
+        return memo[key];
     }
 
-    if(total < 0 || index >= coins.length) {
-        return 0;
-    }
+    const waysIncludingCoin = coinCombination(total - coins[index], coins, index, memo);
+    const waysExcludingCoin = coinCombination(total, coins, index + 1, memo);
 
-    const waysIncludingCoin = countWays(total - coins[index], coins, index, memo); 
-    const waysExcludingCoin = countWays(total, coins, index + 1, memo);
-
-    memo.set(key, waysIncludingCoin + waysExcludingCoin);
-    return memo.get(key);
-}
-
-function coinCombination(totalPence) {
-    const coins = [1, 2, 5, 10, 20, 50, 100, 200];
-    const memoization = new Map();
-    // im using memoization to optimize the recursive solution , using it as cache to store already computed results(thanks to walead for this idea from yesterday's standup meeting)
-    return countWays(totalPence, coins, 0, memoization);
+    memo[key] = waysIncludingCoin + waysExcludingCoin;
+    
+    return memo[key];
 }
 
 // Alternative iterative dynamic programming approach / nested loops
@@ -55,5 +78,4 @@ function coinCombination(totalPence) {
 //     return ways[total];
 // }
 
-// --- Example Usage ---
 console.log(coinCombination(200)); //-> 73682
