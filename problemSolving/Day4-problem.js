@@ -42,6 +42,18 @@ function coinCombination(totalPence) {
     return countWays(totalPence, coins, 0, memoization);
 }
 
+// Alternative iterative dynamic programming approach / nested loops
+// function coinCombination(total) {
+//     const coins = [200, 100, 50, 20, 10, 5, 2, 1];
+//     const ways = Array(total + 1).fill(0);
+//     ways[0] = 1;
+//     for (const coin of coins) {
+//         for (let amount = coin; amount <= total; amount++) {
+//             ways[amount] += ways[amount - coin];
+//         }
+//     }
+//     return ways[total];
+// }
 
 // --- Example Usage ---
 console.log(coinCombination(200)); //-> 73682
