@@ -79,3 +79,6 @@ function coinCombination(total, coins = [1, 2, 5, 10, 20, 50, 100, 200], index =
 // }
 
 console.log(coinCombination(200)); //-> 73682
+console.log(coinCombination(100)); //-> 4562
+console.log(coinCombination(50));
+console.log(coinCombination(20)); //-> 41
