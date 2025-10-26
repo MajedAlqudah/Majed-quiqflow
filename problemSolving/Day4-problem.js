@@ -57,10 +57,10 @@ function coinCombination(total, coins = [1, 2, 5, 10, 20, 50, 100, 200], index =
         return memo[key];
     }
 
-    const waysIncludingCoin = coinCombination(total - coins[index], coins, index, memo);
-    const waysExcludingCoin = coinCombination(total, coins, index + 1, memo);
+    // const waysIncludingCoin = coinCombination(total - coins[index], coins, index, memo);
+    // const waysExcludingCoin = coinCombination(total, coins, index + 1, memo);
+    memo[key] = coinCombination(total - coins[index], coins, index, memo) + coinCombination(total, coins, index + 1, memo);
 
-    memo[key] = waysIncludingCoin + waysExcludingCoin;
     
     return memo[key];
 }
